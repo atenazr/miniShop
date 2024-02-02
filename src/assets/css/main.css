@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.router-link-exact-active{
+    @apply text-dark-gray underline font-bold
+}
+
+.btn-primary{
+    @apply my-1 md:my-5 text-center text-xs md:text-sm lg:text-base w-full text-dark-gray border border-dark-gray cursor-pointer hover:opacity-90 transition-colors py-1 lg:py-2 px-1.5 lg:px-2.5
+}
