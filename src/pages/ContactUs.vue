@@ -10,7 +10,7 @@
             <div class="w-full lg:px-2.5">
               <FormInput
                   v-model:valueInput="values.email"
-                  @input="validate('email')"
+                  @validate="validate('email')"
                   type="text"
                   :error="errors.email"
                   label="Email:"
@@ -19,7 +19,7 @@
             <div class="w-full lg:px-2.5">
               <FormInput
                   v-model:valueInput="values.webSite"
-                  @input="validate('email')"
+                  @validate="validate('webSite')"
                   :error="errors.webSite"
                   label="Website:"
                   type="text" />
@@ -27,6 +27,7 @@
             <div class="w-full lg:px-2.5">
               <FormInput
                   v-model:valueInput="values.phone"
+                  @validate="validate('phone')"
                   :error="errors.phone"
                   label="Phone:"
                   type="text" />
@@ -39,6 +40,7 @@
               </div>
               <textarea
                   placeholder="Write a message..."
+                  @blur="validate('message')"
                   class="w-full h-full outline-none border border-gray-300 focus:border-blue-500 focus:border-2 text-dark-gray lg:text-base px-2 lg:px-4 rounded-md py-2 lg:py-3 shadow-sm transition-all resize-none"
                   :value="values.message" />
               <div v-show="!!errors.message"  class="w-full flex px-1 justify-between items-center text-size-10 lg:text-xs text-red-500 tracking-wider mt-2">

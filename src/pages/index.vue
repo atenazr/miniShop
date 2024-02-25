@@ -8,36 +8,33 @@ import GlobalBtn from "~/components/shared/GlobalBtn.vue";
 const useProducts = useProductsStore()
 const loading = ref(true)
 const products = ref<IProduct[]>()
+
 onBeforeMount(async()=>{
   const [response,error] = await useProducts.loadProducts() as [IProduct[],any]
-  console.log('in page',response)
   products.value = response
   loading.value = false
 })
-
 const deleteProduct =(id:number)=>{
 //     delete number
     console.log('id',id)
 }
-
 const editProduct =(id:number)=>{
 //     edit number
   console.log('id',id)
 }
-
 const addProduct = ()=>{
 //   adding product
 }
-
 </script>
 
 <style lang="scss">
 </style>
+
 <template>
   <div class="container mx-auto">
     <Spinner class="my-10" v-if="loading" />
-    <section v-else class="w-full py-6 lg:py-12">
-      <div class="mb-4 lg:mb-8 px-6 lg:px-8 flex items-center justify-between">
+    <section v-else class="w-full py-4 lg:py-6">
+      <div class="mb-2.5 lg:mb-4 px-6 lg:px-8 flex items-center justify-between">
           <div class="text-xl lg:text-3xl font-bold text-dark-gray">
             Products
           </div>

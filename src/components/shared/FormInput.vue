@@ -9,6 +9,8 @@
         <input
             @input="$emit('update:valueInput', $event.target.value);$emit('input')"
             :value="valueInput"
+            @blur="$emit('validate')"
+            @keyup="$emit('validate'); $emit('input', $event.target.value);"
             ref="input"
             :type="inputType"
             class="outline-none border border-gray bg-white focus:focus:border-blue-500 text-dark-gray text-xs md:text-base p-2.5 md:px-4 rounded-lg md:rounded-[15px]  md:py-3 w-full shadow-sm transition-all">
@@ -36,7 +38,7 @@ const props = defineProps<IProps>()
 
 const inputType=ref(props.type)
 
-const emit = defineEmits(['input','update:valueInput'])
+const emit = defineEmits(['input','update:valueInput','validate'])
 </script>
 
 <style scoped>
