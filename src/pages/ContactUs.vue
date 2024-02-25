@@ -9,22 +9,24 @@
           <section class="lg:h-[320px] lg:pr-20 w-full lg:w-1/2 flex flex-col justify-between items-center">
             <div class="w-full lg:px-2.5">
               <FormInput
-                  v-model="values.email"
-                  :error="errors.email"
+                  v-model:valueInput="values.email"
+                  @input="validate('email')"
                   type="text"
+                  :error="errors.email"
                   label="Email:"
               />
             </div>
             <div class="w-full lg:px-2.5">
               <FormInput
-                  v-model="values.webSite"
+                  v-model:valueInput="values.webSite"
+                  @input="validate('email')"
                   :error="errors.webSite"
                   label="Website:"
                   type="text" />
             </div>
             <div class="w-full lg:px-2.5">
               <FormInput
-                  v-model="values.phone"
+                  v-model:valueInput="values.phone"
                   :error="errors.phone"
                   label="Phone:"
                   type="text" />
@@ -39,7 +41,7 @@
                   placeholder="Write a message..."
                   class="w-full h-full outline-none border border-gray-300 focus:border-blue-500 focus:border-2 text-dark-gray lg:text-base px-2 lg:px-4 rounded-md py-2 lg:py-3 shadow-sm transition-all resize-none"
                   :value="values.message" />
-              <div v-show="!!errors.message"  class="w-full flex px-1 justify-between items-center text-size-10 lg:text-xs text-red-300 tracking-wider mt-2">
+              <div v-show="!!errors.message"  class="w-full flex px-1 justify-between items-center text-size-10 lg:text-xs text-red-500 tracking-wider mt-2">
                 <!-- error message , if exist -->
                 <p  class="text-left w-5/6">{{ errors.message}}</p>
               </div>

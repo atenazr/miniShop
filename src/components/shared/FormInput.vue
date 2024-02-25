@@ -7,7 +7,8 @@
 
       <div class="">
         <input
-            :value="value"
+            @input="$emit('update:valueInput', $event.target.value);$emit('input')"
+            :value="valueInput"
             ref="input"
             :type="inputType"
             class="outline-none border border-gray bg-white focus:focus:border-blue-500 text-dark-gray text-xs md:text-base p-2.5 md:px-4 rounded-lg md:rounded-[15px]  md:py-3 w-full shadow-sm transition-all">
@@ -27,7 +28,7 @@ interface IProps {
   type: string,
   label?: string,
   // placeText?: string | null,
-  value?: string | number | null,
+  valueInput?: string | number | null,
   error?: string | null,
 }
 
@@ -35,6 +36,7 @@ const props = defineProps<IProps>()
 
 const inputType=ref(props.type)
 
+const emit = defineEmits(['input','update:valueInput'])
 </script>
 
 <style scoped>

@@ -7,35 +7,31 @@ export default function useValidation(objectSchema:yup.ObjectShape){
     Object.entries(objectSchema).forEach(([configName, config]) => {
         result[configName] = '';
     });
-    let values = ref<{[key:string]: string}>(result)
-    let errors = ref<{[key:string]: string}>(result)
+    let values = ref<{[key:string]: string}>(Object.assign({},result))
+    let errors = ref<{[key:string]: string}>(Object.assign({},result))
     const FormSchema = yup.object().shape(objectSchema) as yup.Schema
 
     const validate=async(field: string)=> {
-        FormSchema.validateAt(field,values.value)
-            .then(() => {
-                (errors.value as any)[field] = "";
-            }).catch((err: any) => {
-            (errors.value as any)[field] = err.message;
-        })
-    }
-    // // validate all info boxes
-    const validateAll=async()=> {
-        return new Promise((resolve) => {
-            FormSchema.validate(values.value, { abortEarly: false })
-                .then(() => {
-                    resolve(true)
-                })
-                .catch((err: any) => {
-                    err.inner.forEach((error: any) => {
-                        errors.value = { ...errors.value, [error.path]: error.message };
-                    });
-                    resolve(false)
-                })
-        })
+        (errors.value as any)[field] = "";
+        try{
+            await FormSchema.validateAt(field,values.value);
+        }catch (e:any){
+            (errors.value as any)[field] = e.message;
+        }
     }
 
-    // // let
+    // // validate all info boxes
+    const validateAll=async()=> {
+        try{
+            await FormSchema.validate(values.value, { abortEarly: false })
+            return true
+        }catch (err:any){
+                err.inner.forEach((error: any) => {
+                    errors.value = { ...errors.value, [error.path]: error.message };
+                });
+                return false
+            }
+        }
 
     return { values,errors,validate,validateAll  }
 }
