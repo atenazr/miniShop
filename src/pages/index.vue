@@ -45,7 +45,7 @@ const addProduct = ()=>{
           <GlobalBtn class="text-base lg:!text-xl" text="Add Product" @clickBtn="addProduct" ></GlobalBtn>
         </div>
       </div>
-          <div v-if="!!products" class="w-full flex justify-center items-start flex-wrap">
+          <div v-if="!!products" class="w-full flex justify-start items-start flex-wrap">
               <productCard
               v-for="(product,index) in products"
               :key="index"

@@ -10,17 +10,12 @@ export const useProductsStore = defineStore('products', ()=>{
     })
 
     const loadProducts=async ()=>{
-        console.log('in store')
         try {
             const response = await useAsyncPublicRequest('https://fakestoreapi.com/products/')
             if(response.ok) {
                 const res = await response.json()
-                console.log('product', res)
-                // let res = fetch('https://dummyjson.com/products')
-                //     .then(res => res.json())
-                // console.log('product',res)
-
-                return [res.products, null]
+                console.log('reeee',res)
+                return [res, null]
             }
         } catch (e) {
             // Error Handler

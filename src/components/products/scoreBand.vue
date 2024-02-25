@@ -1,8 +1,13 @@
 <template>
-  <div dir="ltr" class="flex items-end">
-        <span v-for="score in fullStars" :key="score" class="text-xs lg:text-base material-icons">star</span>
-        <span v-for="score in halfStars" :key="score" class="text-xs lg:text-base material-symbols-outlined">star_half</span>
-        <span v-for="score in emptyStars" :key="score" class="text-xs lg:text-base material-symbols-outlined">star</span>
+  <div class="flex items-center">
+      <div dir="ltr" class="flex items-end">
+            <span v-for="score in fullStars" :key="score" class="text-xs lg:text-base material-icons">star</span>
+            <span v-for="score in halfStars" :key="score" class="text-xs lg:text-base material-symbols-outlined">star_half</span>
+            <span v-for="score in emptyStars" :key="score" class="text-xs lg:text-base material-symbols-outlined">star</span>
+      </div>
+      <div class="text-xs text-secondary-gray mx-2">
+          {{ '('+countRate+')' }}
+      </div>
   </div>
 </template>
 
@@ -12,7 +17,11 @@
    defaultScore:{
      type:Number,
      default:0
-   }
+   },
+    countRate:{
+      type:Number,
+      default:0
+    }
  })
 
  const fullStars= computed( () =>{
